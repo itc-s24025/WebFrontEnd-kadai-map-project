@@ -1,0 +1,29 @@
+.activeTab {
+    background-color: #ffb6c1; /* ライトピンク */
+    color: #ff1493; /* ディープピンク */
+    border: 3px solid #ff1493;
+    border-bottom: none;
+    z-index: 10;
+    transform: translateY(-2px); /* 少し持ち上げてアクティブ感を出す */
+}
+
+/* 非アクティブなタブ */
+.inactiveTab {
+    background-color: #f8f8ff; /* ゴーストホワイト */
+    color: #ff69b4; /* ホットピンク */
+    border: 3px solid #ffb6c1;
+    border-left: none; /* タブ間の隙間をなくすため */
+    opacity: 0.8;
+}
+
+.inactiveTab:hover {
+    background-color: #ffefff;
+}
+
+/* 訪問写真がない場合の無効タブ */
+.inactiveTab:disabled {
+    background-color: #f0f0f0;
+    color: #cccccc;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+}

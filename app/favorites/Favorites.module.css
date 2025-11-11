@@ -1,0 +1,92 @@
+/* app/favorites/Favorites.module.css */
+
+/* ページ全体のコンテナ */
+.container {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* タイトル */
+.title {
+  color: #ff69b4; /* ホットピンク */
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  border-bottom: 4px solid #ffb6c1; /* ライトピンクの下線 */
+  padding-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(255, 192, 203, 0.5);
+  font-family: 'Comfortaa', cursive;
+}
+
+/* スポットリストのアイテム */
+.listItem {
+  padding: 25px;
+  background: linear-gradient(135deg, #fff0f5, #f0f8ff); /* ピンクとブルーの優しいグラデーション */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2), 
+              0 0 0 3px #ffe4e1; /* 内側の白いボーダー風 */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.listItem:hover {
+  transform: scale(1.02) rotate(-1deg); /* 少し回転させて可愛らしく */
+  box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
+}
+
+/* スポット名 */
+.spotName {
+  color: #87ceeb; /* スカイブルー */
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.15s ease;
+}
+
+.listItem:hover .spotName {
+  color: #4682b4; /* スカイブルーを少し濃く */
+}
+
+/* 評価 */
+.rating {
+  color: #ffd700; /* ゴールド */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* タグ */
+.tag {
+  background-color: #afeeee; /* パステルミント */
+  color: #4b0082; /* 濃い紫 */
+  border-radius: 15px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* 写真コンテナ */
+.photoContainer {
+  gap: 12px;
+  padding-bottom: 5px;
+}
+
+/* 写真 */
+.photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #fff; /* 白い枠線 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* スポットがない場合のメッセージ */
+.emptyMessage {
+  background-color: #fff0f5; /* ラベンダーピンク */
+  color: #ff69b4;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+  font-style: italic;
+}
