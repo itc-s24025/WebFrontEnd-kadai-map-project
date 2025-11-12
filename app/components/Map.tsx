@@ -1,67 +1,105 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import styles from '@/app/components/Map.module.css'; 
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./Map.module.css";
 
-// MapコンポーネントのProps型定義
 interface MapProps {
   initialLat: number;
   initialLng: number;
   initialZoom: number;
 }
 
-/**APIをロードし、地図を表示する
- * Mapコンポーネント: Google Maps 
- * @param {MapProps} props - microCMSから取得した初期設定
- */
-
 export default function Map({ initialLat, initialLng, initialZoom }: MapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [status, setStatus] = useState<'LOADING' | 'READY' | 'ERROR'>('LOADING');
+  const mapInstanceRef = useRef<google.maps.Map | null>(null);
+  const [status, setStatus] = useState<"LOADING" | "READY" | "ERROR">("LOADING");
+
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  /** Google Maps API スクリプトを1回だけ読み込む */
+  const loadGoogleMapsScript = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      if (window.google?.maps) {
+        resolve();
+        return;
+      }
+
+      const existingScript = document.querySelector<HTMLScriptElement>(
+        'script[data-googlemaps="true"]'
+      );
+      if (existingScript) {
+        existingScript.addEventListener("load", () => resolve());
+        existingScript.addEventListener("error", () => reject());
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+      script.async = true;
+      script.defer = true;
+      script.dataset.googlemaps = "true";
+      script.onload = () => resolve();
+      script.onerror = () => reject();
+      document.head.appendChild(script);
+    });
+  };
+
+  /** マップを初期化 */
+  const initializeMap = () => {
+    if (!mapRef.current || !window.google?.maps) return;
+
+    if (mapInstanceRef.current) {
+      // 既にマップが存在する場合は再利用（再生成しない）
+      console.debug("Googleマップは既に初期化されているため、再初期化をスキップします。");
+      return;
+    }
+
+    mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
+      center: { lat: initialLat, lng: initialLng },
+      zoom: initialZoom,
+      disableDefaultUI: false,
+    });
+
+    setStatus("READY");
+    console.log("Googleマップが初期化されました。");
+  };
 
   useEffect(() => {
-    // 実際にはここでGoogle Maps APIをロードするロジックが入ります。
-    // 今回はモックとして、数秒後にREADYにする
-    const timer = setTimeout(() => {
-      setStatus('READY');
-      console.log(`Map initialized at: ${initialLat}, ${initialLng} with zoom ${initialZoom}`);
-    }, 2000); 
+    let active = true;
+    if (!apiKey) {
+      console.error("NEXT_PUBLIC_GOOGLE_MAPS_API_KEY が設定されていません。");
+      setStatus("ERROR");
+      return;
+    }
 
-    // クリーンアップ
-    return () => clearTimeout(timer);
-  }, [initialLat, initialLng, initialZoom]);
+    loadGoogleMapsScript()
+      .then(() => {
+        if (active) initializeMap();
+      })
+      .catch(() => {
+        if (active) setStatus("ERROR");
+      });
 
-  const mapCenter = `初期位置: ${initialLat}, ${initialLng} / ズーム: ${initialZoom}`;
+    return () => {
+      // アンマウント時に Map の DOM 操作はしない（エラー防止）
+      active = false;
+    };
+  }, [apiKey, initialLat, initialLng, initialZoom]);
 
   return (
-    // 【重要】CSS Modulesのクラスを適用 (styles.mapContainer)
-    <div ref={mapRef} className={styles.mapContainer}>
-      
-      {status === 'LOADING' && (
-        // TailwindとCSS Modulesのクラスを併用
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50/70 backdrop-blur-sm z-30">
-          <div className={`${styles.statusBox} text-center`}>
-            <p className={`${styles.authWaiting} text-2xl font-semibold mb-2`}>
-              🚧 Google Maps APIキー認証待機中
+    <div className={styles.mapContainer}>
+      <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+
+      {status === "ERROR" && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm z-20">
+          <div className={styles.statusBox}>
+            <p className="text-2xl font-semibold text-red-500 mb-2">
+              Google Maps の読み込みに失敗しました
             </p>
-            <p className="text-sm text-gray-600">{mapCenter}</p>
+            <p>APIキーを確認してください。</p>
           </div>
         </div>
       )}
-
-      {status === 'READY' && (
-        // マップがロードされた後のメッセージ（デバッグ用）
-        <div className="absolute top-2 left-2 p-2 bg-white/80 rounded-lg text-xs font-mono shadow-md z-40">
-            Map Loaded: ({initialLat}, {initialLng})
-        </div>
-      )}
-
-      {/* 実際にはこの中にGoogle Mapsの描画要素（Canvasなど）が入ります */}
-      {/* statusBoxの裏側にあり、READY時に表示される */}
-      <div className="w-full h-full bg-blue-100 flex items-center justify-center text-gray-400">
-        {status === 'READY' ? 'Google Map がここに表示されます' : '地図領域'}
-      </div>
-
     </div>
   );
 }
