@@ -1,0 +1,14 @@
+/* 星評価 */
+.stars {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1;
+}
+/* 評価 */
+.rating {
+  color: #ffff7a;
+  font-weight: 600;
+}
+

@@ -2,91 +2,122 @@
 
 /* ページ全体のコンテナ */
 .container {
-  padding: 40px 20px;
-  max-width: 1000px;
   margin: 0 auto;
+  padding: 2rem 1.25rem;
+  min-height: 100vh; /* ビューポート全体を覆う */
+  box-sizing: border-box;
 }
 
 /* タイトル */
 .title {
-  color: #ff69b4; /* ホットピンク */
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 25px;
-  border-bottom: 4px solid #ffb6c1; /* ライトピンクの下線 */
-  padding-bottom: 10px;
-  text-shadow: 1px 1px 2px rgba(255, 192, 203, 0.5);
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
+  font-size: 1.6rem;
+  color: #d63384;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* メモ・感想セクション */
+.memoSection {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, #fffafc, #fff5f8);
+  border: 1px solid #fde8f5;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.04);
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #d63384;
+  margin-bottom: 0.75rem;
+}
+
+.memoContent {
+  color: #374151;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* 戻るリンク */
+.backLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #4682b4;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* スポットリストのアイテム */
 .listItem {
-  padding: 25px;
-  background: linear-gradient(135deg, #fff0f5, #f0f8ff); /* ピンクとブルーの優しいグラデーション */
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2), 
-              0 0 0 3px #ffe4e1; /* 内側の白いボーダー風 */
+  border: 1px solid #f3e8f0;
+  background: linear-gradient(180deg, #ffffff 0%, #fff6fb 100%);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.06);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .listItem:hover {
-  transform: scale(1.02) rotate(-1deg); /* 少し回転させて可愛らしく */
+  transform: scale(1);
   box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
 }
 
 /* スポット名 */
 .spotName {
-  color: #87ceeb; /* スカイブルー */
-  font-size: 1.8rem;
   font-weight: 700;
+  font-size: 1.1rem;
+  color: #111827;
   transition: color 0.15s ease;
 }
 
 .listItem:hover .spotName {
-  color: #4682b4; /* スカイブルーを少し濃く */
-}
-
-/* 評価 */
-.rating {
-  color: #ffd700; /* ゴールド */
-  font-size: 1.2rem;
-  font-weight: bold;
+  color: #4682b4;
 }
 
 /* タグ */
 .tag {
-  background-color: #afeeee; /* パステルミント */
-  color: #4b0082; /* 濃い紫 */
-  border-radius: 15px;
-  padding: 4px 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  display: inline-block;
+  background: #fff0f6;
+  color: #c0266a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid #ffd6e8;
 }
 
 /* 写真コンテナ */
 .photoContainer {
-  gap: 12px;
-  padding-bottom: 5px;
+  gap: 0.5rem;
 }
 
 /* 写真 */
 .photo {
-  width: 100px;
-  height: 100px;
+  height: 96px;
+  width: auto;
+  border-radius: 8px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 3px solid #fff; /* 白い枠線 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  margin-right: 0.5rem;
 }
 
 /* スポットがない場合のメッセージ */
 .emptyMessage {
-  background-color: #fff0f5; /* ラベンダーピンク */
-  color: #ff69b4;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
-  font-style: italic;
+  text-align: center;
+  color: #6b7280;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+/* 塗り（全体/半分を幅で制御） */
+.star .fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff69b4; /* ピンク */
+  overflow: hidden;
+  width: 100%;
+  pointer-events: none;
 }
