@@ -1,6 +1,6 @@
 // lib/microcms-client.server.ts
 import { createClient } from "microcms-js-sdk";
-import type { AppSettings, FavoriteSpot, MicroCMSResponse } from "@/lib/types";
+import type {FavoriteSpot, MicroCMSResponse } from "@/lib/types";
 
 console.log("✅ MICROCMS_SERVICE_DOMAIN:", process.env.MICROCMS_SERVICE_DOMAIN);
 console.log("✅ MICROCMS_API_KEY:", process.env.MICROCMS_API_KEY ? "設定済み" : "未設定");

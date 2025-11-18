@@ -1,13 +1,15 @@
 // app/page.tsx
-import {AppSettings, FavoriteSpot } from '@/lib/types';
+import {FavoriteSpot, SlideContent } from '@/lib/types';
 import {client} from '@/lib/microcms-client.server';
-import ClientHome from '@/app/ClientHome'; // クライアント側に分ける
+import ClientHome from '@/app/ClientHome'; 
 
-async function getAppSettings(): Promise<AppSettings> {
+async function getSlideImages(): Promise<SlideContent[]> {
   try {
-    return await client.getObject<AppSettings>({ endpoint: 'app_settings' });
-  } catch {
-    return { initial_lat: 35.6895, initial_lng: 139.6917, default_zoom: 12 };
+    const data = await client.getList<SlideContent>({ endpoint: 'slides' });
+    return data.contents;
+  } catch (error) {
+    console.error("Failed to fetch slide images:", error);
+    return [];
   }
 }
 
@@ -21,12 +23,18 @@ async function getFavoriteSpots(): Promise<FavoriteSpot[]> {
 }
 
 export default async function Home() {
-  const [settings, spots] = await Promise.all([
-    getAppSettings(),
+  const [spots, slides] = await Promise.all([
     getFavoriteSpots(),
+    getSlideImages(),
   ]);
 
+  const topCarouselPhotos = slides.map(slide => ({
+    url: slide.image.url,
+    alt: slide.image.url, // または別の値
+  }));
+
   return (
-    <ClientHome settings={settings} spots={spots} /> // クライアント側で状態管理
+    <ClientHome spots={spots} topCarouselPhotos={topCarouselPhotos}/> // クライアント側で状態管理
   );
 }
+

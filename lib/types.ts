@@ -1,11 +1,3 @@
-export interface AppSettings {
-  initial_lat: number;
-  initial_lng: number;
-  default_zoom: number;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
 export interface FavoriteSpot {
   id: string;
   place_id: string;
@@ -35,4 +27,12 @@ export interface MicroCMSResponse<T> {
   totalCount: number;
   offset: number;
   limit: number;
+}
+
+export interface SlideContent {
+  image: {
+    url: string;
+    width: number;
+    height: number;
+  };
 }
