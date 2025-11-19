@@ -30,11 +30,11 @@ export default async function Home() {
 
   const topCarouselPhotos = slides.map(slide => ({
     url: slide.image.url,
-    alt: slide.image.url, // または別の値
+    alt: slide.image.url,
   }));
 
   return (
-    <ClientHome spots={spots} topCarouselPhotos={topCarouselPhotos}/> // クライアント側で状態管理
+    <ClientHome spots={spots} topCarouselPhotos={topCarouselPhotos} />
   );
 }
 

@@ -12,7 +12,6 @@
 .title {
   font-family: "Comfortaa", cursive;
   font-size: 1.6rem;
-  color: #d63384;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -30,7 +29,6 @@
 .sectionTitle {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #d63384;
   margin-bottom: 0.75rem;
 }
 
@@ -45,24 +43,22 @@
 .backLink {
   display: inline-block;
   margin-top: 1.5rem;
-  color: #4682b4;
   text-decoration: none;
   font-weight: 600;
 }
 
 /* スポットリストのアイテム */
 .listItem {
+  list-style: none;
   border: 1px solid #f3e8f0;
-  background: linear-gradient(180deg, #ffffff 0%, #fff6fb 100%);
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.06);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .listItem:hover {
-  transform: scale(1);
+  transform: scale(1.005);
   box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
 }
 
@@ -84,7 +80,7 @@
   background: #fff0f6;
   color: #c0266a;
   padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  border-radius: 9999px;
   font-size: 0.75rem;
   border: 1px solid #ffd6e8;
 }
@@ -116,7 +112,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: #ff69b4; /* ピンク */
   overflow: hidden;
   width: 100%;
   pointer-events: none;

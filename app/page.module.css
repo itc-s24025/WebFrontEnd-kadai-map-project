@@ -202,6 +202,91 @@
     z-index: 1;
   }
 }
+.button09 {
+  display: inline-block;
+  background-color: #fff;
+  border: solid 2px #ff69b4;
+  color: #ff69b4;
+  border-radius: 10px;
+  padding: 10px 30px;
+  text-decoration: none;
+  font-size: 1em;     
+  transition: all .3s ease 0s;
+} 
+.button09:hover {
+  color: #ff69b4;
+  background-color: #fff;
+  box-shadow: 0 0 7px #ff69b4;
+}
+
+/* ヒーローセクション（文字とカルーセルのコンテナ） */
+.heroSection {
+  display: flex;             /* Flexboxを有効にして子要素を横並びにする */
+  align-items: center;       /* 垂直方向の中央揃え */
+  padding: 4rem 6rem;
+  gap: 40px;                 /* 要素間のスペース */
+  min-height: calc(100vh - 80px); /* ヘッダーの高さを引いたビューポートの高さ */
+}
+
+/* 左側のテキストエリア */
+.heroText {
+  flex: 1;                   /* 均等にスペースを占めるように（必要に応じてサイズ調整） */
+  max-width: 50%;            /* 最大幅を設定 */
+  padding: 20px;
+}
+
+.heroText h2 {
+  font-size: 3rem;           /* 大きめの見出し */
+  margin-bottom: 1rem;
+  color: #1a202c;
+}
+
+.heroText p {
+  font-size: 1.25rem;
+  color: #4a5568;
+}
+
+/* 右側のカルーセルエリア */
+.heroCarousel {
+  flex: 1;                   /* 均等にスペースを占めるように（必要に応じてサイズ調整） */
+  max-width: 50%;            /* 最大幅を設定 */
+}
+
+/* ------------------- レスポンシブ対応 ------------------- */
+/* 画面幅が700px以下のモバイル用 */
+@media (max-width: 700px) {
+  .heroSection {
+    flex-direction: column;  /* 縦方向に積み重ねる（文字が上、カルーセルが下） */
+    padding: 2rem 1rem;
+    min-height: auto;        /* 最小の高さを自動に */
+    gap: 20px;
+  }
+
+  .heroText,
+  .heroCarousel {
+    flex: none;              /* flexの比率をリセット */
+    max-width: 100%;         /* 幅を画面いっぱいにする */
+    padding: 10px;
+  }
+
+  .heroText h2 {
+    font-size: 2rem;
+    text-align: center;      /* モバイルでは文字を中央寄せにしても良いかも */
+  }
+}
+
+.titleLeft {
+  font-size: 1.6rem;
+  display: block;
+  text-align: left;
+  width: 100%;
+}
+
+/* モバイル用のメディアクエリ内の .titleLeft も調整 */
+@media (max-width: 700px) {
+  .titleLeft {
+  }
+}
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
@@ -226,5 +311,11 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .titleLeft {
+    transform: translateY(12px);
   }
 }
