@@ -23,8 +23,7 @@ async function getFavoriteSpots(): Promise<FavoriteSpot[]> {
 }
 
 export default async function Home() {
-  const [spots, slides] = await Promise.all([
-    getFavoriteSpots(),
+  const [slides] = await Promise.all([
     getSlideImages(),
   ]);
 
@@ -34,7 +33,7 @@ export default async function Home() {
   }));
 
   return (
-    <ClientHome spots={spots} topCarouselPhotos={topCarouselPhotos} />
+    <ClientHome topCarouselPhotos={topCarouselPhotos} />
   );
 }
 
