@@ -4,7 +4,6 @@
 import Link from "next/link";
 import Carousel from "@/app/components/carousel/Carousel";
 import styles from "@/app/page.module.css";
-
 export default function ClientHome({
   topCarouselPhotos, // トップカルーセル用の写真配列（配列が空の場合は非表示）
 }: {
@@ -13,19 +12,22 @@ export default function ClientHome({
   // トップページ（クライアント側） — 受け取った写真をカルーセルで表示
   return (
     <main className="min-h-screen bg-white flex flex-col">
+
       {/* ヘッダー（簡易） */}
-      <header className="bg-indigo-600 shadow-xl p-4 sticky top-0 z-20 flex justify-between items-center text-white"></header>
+      <header>お気に入りスポット紹介</header>
 
       {/* 写真がある場合、右側にカルーセルを表示 */}
       {topCarouselPhotos.length > 0 && (
         <div className={styles.heroSection}>
           {/* 左側のテキストエリア（サービス説明とリンク） */}
           <div className={styles.heroText}>
-            <h2 className={styles.titleLeft}>お気に入りスポット紹介</h2>
+            <h2 className={styles.titleLeft}>記録が体験を変える</h2>
+            <h2 className={styles.titleLeft}>お気に入りスポットの訪問記録</h2>
 
-            <p>
+            <p className={styles.textLeft}>
               あなたの「好き」を育てる成長ログ
-              <br />
+            </p>
+            <p className={styles.textLeft}>
               お気に入りの場所の記録と評価で、次の訪問を120%楽しむために
             </p>
             <br />
@@ -36,8 +38,6 @@ export default function ClientHome({
 
           {/* 右側のカルーセル（写真表示） */}
           <div className={styles.heroCarousel}>
-            {/* 自動再生を有効にする（interval はミリ秒） */}
-            {/* autoPlaytrue カルーセルが自動で切り変わる */}
             <Carousel
               photos={topCarouselPhotos}
               autoPlay={true}

@@ -18,11 +18,7 @@ export default function StarRating({
   };
 
   return (
-    <div
-      role="img"
-      aria-label={`評価 ${rating} / ${max}`}
-      style={{ display: "inline-flex", alignItems: "center" }}
-    >
+    <div role="img" aria-label={`評価 ${rating} / ${max}`} className={styles.starsContainer}>
       <span style={{ display: "inline-flex", alignItems: "center" }}>
         {Array.from({ length: filled }).map((_, i) => (
           <span key={"f" + i} className={styles.rating} style={starStyle} >

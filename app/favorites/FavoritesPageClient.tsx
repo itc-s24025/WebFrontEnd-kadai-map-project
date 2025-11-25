@@ -11,8 +11,10 @@ import pageStyles from "@/app/page.module.css";
 export default function FavoritesPageClient({ data }: { data: FavoriteSpot[] }) {
   return (
     <div className={styles.container}>
+
       {/* ページタイトル */}
-      <h1 className={styles.title}>お気に入り一覧</h1>
+      <header>お気に入り一覧</header>
+      <p><Link href="/">トップページ</Link> &gt; <Link href="/favorites">お気に入り一覧</Link></p>
 
       {/* 空状態のメッセージ（アイテムがない場合） */}
       {data.length === 0 && (

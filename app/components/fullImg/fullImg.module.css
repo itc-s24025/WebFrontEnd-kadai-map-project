@@ -1,0 +1,44 @@
+.container {
+  max-width: 200px;
+  padding: 8px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.imageModalThumbs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: nowrap;      /* 折り返さない */
+
+}
+
+.imageModalThumbs img {
+  width: 150px;           /* 通常時の大きさ（調整可） */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+.imageModalThumbs img:hover {
+  transform: scale(1.03);
+}
+
+/* 900px 以下で少し小さくする */
+@media (max-width: 900px) {
+  .imageModalThumbs img {
+    width: 240px;
+    height: 150px;
+  }
+}
+
+/* モバイル向けにさらに縮小 */
+@media (max-width: 600px) {
+  .imageModalThumbs img {
+    width: 140px;
+    height: 88px;
+  }
+}

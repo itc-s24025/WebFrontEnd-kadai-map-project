@@ -2,8 +2,6 @@
 
 /* ページ全体のコンテナ */
 .container {
-  margin: 0 auto;
-  padding: 2rem 1.25rem;
   min-height: 100vh; /* ビューポート全体を覆う */
   box-sizing: border-box;
 }
@@ -11,19 +9,39 @@
 /* タイトル */
 .title {
   font-family: "Comfortaa", cursive;
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin: 0 auto;
   text-align: center;
+  background: #ffffff;
+  width: fit-content;
+}
+
+/* メモ上部の評価・タグを右寄せするコンテナ */
+.memoMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 80%;            /* メモと同じ幅に */
+  margin: 0.75rem auto 0; /* 中央に揃える（.memoSection と揃う） */
+  justify-content: flex-start; /* 内部は左寄せ */
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
+
+.memoContent img {
+  max-height: 480px;
+  width: auto;
 }
 
 /* メモ・感想セクション */
 .memoSection {
   margin-top: 1.5rem;
   padding: 1rem;
+  width: 80%;
+  margin: 0 auto;
   background: linear-gradient(180deg, #fffafc, #fff5f8);
   border: 1px solid #fde8f5;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(214, 51, 132, 0.04);
 }
 
 .sectionTitle {
@@ -33,28 +51,39 @@
 }
 
 .memoContent {
-  color: #374151;
-  line-height: 1.7;
-  font-size: 0.95rem;
-  word-break: break-word;
+  line-height: 2;
+}
+.memoContent p,
+.memoContent > * + * {
+  margin-top: 0.6rem;     /* 各行（段落）上の余白 */
+  margin-bottom: 0.6rem;  /* 各行（段落）下の余白 */
 }
 
 /* 戻るリンク */
 .backLink {
+  position: fixed;               /* 固定配置 */
+  bottom: 20px;                  /* 下からの余白（必要に応じて調整） */
   display: inline-block;
-  margin-top: 1.5rem;
+  padding: 0.6rem 1rem;
+  background: #ffffff;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  z-index: 120;                  /* 上に出す */
+  box-sizing: border-box;
 }
 
 /* スポットリストのアイテム */
 .listItem {
+  background: linear-gradient(180deg, #fffafc, #ffe8ef);
   list-style: none;
-  border: 1px solid #f3e8f0;
   padding: 2rem;
   border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
+  width: 80%;
+  margin: 2rem auto; /* 上下に余白を追加（変更） */
 }
 
 .listItem:hover {
@@ -62,10 +91,22 @@
   box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
 }
 
+/* 写真コンテナ */
+.photoContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;       /* コンテンツが長いときは横スクロール */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+
 /* スポット名 */
 .spotName {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #111827;
   transition: color 0.15s ease;
 }
@@ -76,19 +117,16 @@
 
 /* タグ */
 .tag {
+  margin: 0.5rem 0.3rem 0.5rem 0;
   display: inline-block;
   background: #fff0f6;
   color: #c0266a;
   padding: 0.25rem 0.6rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   border: 1px solid #ffd6e8;
 }
 
-/* 写真コンテナ */
-.photoContainer {
-  gap: 0.5rem;
-}
 
 /* 写真 */
 .photo {
@@ -101,18 +139,8 @@
 
 /* スポットがない場合のメッセージ */
 .emptyMessage {
-  text-align: center;
   color: #6b7280;
-  margin: 1.5rem 0;
+  margin: 0 auto;
   font-size: 0.95rem;
-}
-
-/* 塗り（全体/半分を幅で制御） */
-.star .fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-  width: 100%;
-  pointer-events: none;
+  background: #ffffff;
 }

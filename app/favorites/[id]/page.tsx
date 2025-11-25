@@ -3,6 +3,7 @@ import styles from "@/app/favorites/Favorites.module.css";
 import Link from "next/link";
 import Carousel from "@/app/components/carousel/Carousel";
 import StarRating from "@/app/components/starRating/StarRating";
+import ImageModal from "@/app/components/fullImg/fullImg";
 
 // このファイル: お気に入り詳細ページ。microCMS から指定IDのスポット情報を取得して表示します。
 export default async function FavoriteDetailPage({
@@ -29,12 +30,19 @@ export default async function FavoriteDetailPage({
     <div className={styles.container}>
 
       {/* ページタイトル（スポット名） */}
-      <h1 className={styles.title}>{data.spot_name}</h1>
+      <header>{data.spot_name}</header>
+
+      <p><Link href="/">トップページ</Link> &gt; <Link href="/favorites">お気に入り一覧</Link> &gt; <Link href={`/favorites/${data.id}`}>{data.spot_name}</Link></p>
 
       {/* microCMS の画像を渡すカルーセル（クライアントコンポーネント） */}
       {photos.length > 0 && <Carousel photos={photos} />}
 
+        {/* 追加: サムネイル／全画面表示ボタン */}
+  {photos.length > 0 && <ImageModal photos={photos} />}
+
+
       {/* 星評価: data は単一オブジェクトなので map は不要。StarRating を使って表示 */}
+        <div className={styles.memoMeta}>
       {data.rating != null && (
         <div style={{ marginTop: 8 }}>
           <StarRating rating={data.rating} />
@@ -51,6 +59,7 @@ export default async function FavoriteDetailPage({
           ))}
         </div>
       )}
+      </div>
 
       {/* メモ・感想 */}
       {data.memo && (
@@ -59,10 +68,9 @@ export default async function FavoriteDetailPage({
           <div
             className={styles.memoContent}
             dangerouslySetInnerHTML={{ __html: data.memo }}
-          />
+          />                  
         </div>
       )}
-      
       {/* 一覧へ戻るリンク */}
       <Link href="/favorites" className={styles.backLink}>
         戻る

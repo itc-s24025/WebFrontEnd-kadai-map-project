@@ -1,14 +1,22 @@
 /* 星評価 */
+.starsContainer {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.5rem;      /* 背景内の余白（調整可） */
+}
 .stars {
   display: inline-flex;
   gap: 6px;
-  align-items: center;
   font-size: 16px;
-  line-height: 1;
 }
 /* 評価 */
 .rating {
-  color: #ffff7a;
+  color: #fbbf24;
+  font-weight: 600;
+}
+/* 空の星 */
+.star {
+  color: #d1d5db;
   font-weight: 600;
 }
 

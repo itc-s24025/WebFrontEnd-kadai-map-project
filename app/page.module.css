@@ -203,6 +203,7 @@
   }
 }
 .button09 {
+  margin-top: 5%;
   display: inline-block;
   background-color: #fff;
   border: solid 2px #ff69b4;
@@ -249,7 +250,7 @@
 /* 右側のカルーセルエリア */
 .heroCarousel {
   flex: 1;                   /* 均等にスペースを占めるように（必要に応じてサイズ調整） */
-  max-width: 50%;            /* 最大幅を設定 */
+  max-width: 50%;            /* カルーセル領域をやや広くして画像を大きく見せる */
 }
 
 /* ------------------- レスポンシブ対応 ------------------- */
@@ -260,13 +261,12 @@
     padding: 2rem 1rem;
     min-height: auto;        /* 最小の高さを自動に */
     gap: 20px;
-  }
+}
 
   .heroText,
   .heroCarousel {
     flex: none;              /* flexの比率をリセット */
     max-width: 100%;         /* 幅を画面いっぱいにする */
-    padding: 10px;
   }
 
   .heroText h2 {
@@ -277,9 +277,22 @@
 
 .titleLeft {
   font-size: 1.6rem;
-  display: block;
+  background: #ffffff;    /* 文字の背景を白に */
+  display: inline-block; /* 背景を文字幅に合わせる */
   text-align: left;
-  width: 100%;
+  width: fit-content;
+  line-height: 1;  /* 行の高さを調整して上下の余白を詰める */
+}
+
+
+
+.textLeft {
+  font-size: 1rem;
+  background: #ffffff;    /* 文字の背景を白に */
+  display: inline-block; /* 背景を文字幅に合わせる */
+  text-align: left;
+  width: fit-content;
+  line-height: 1.5;  /* 行の高さを調整して上下の余白を詰める */
 }
 
 /* モバイル用のメディアクエリ内の .titleLeft も調整 */
