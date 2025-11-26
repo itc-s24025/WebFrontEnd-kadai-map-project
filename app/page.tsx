@@ -1,7 +1,7 @@
 // app/page.tsx
 import {FavoriteSpot, SlideContent } from '@/lib/types';
 import {client} from '@/lib/microcms-client.server';
-import ClientHome from '@/app/ClientHome'; 
+import ClientHome from '@/app/components/HomeClient'; 
 
 async function getSlideImages(): Promise<SlideContent[]> {
   try {

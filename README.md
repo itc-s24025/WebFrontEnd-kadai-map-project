@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WebFrontEnd-kadai-map-project
 
-## Getting Started
+Next.js (App Router) + TypeScript で作った「お気に入りスポット」アプリケーション。
+microCMS でスポットを管理し、カルーセル・星評価・メモ感想などの UI を提供します。
 
-First, run the development server:
+## 主な機能
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- お気に入りスポットの一覧表示 / 詳細表示
+- 画像カルーセル表示
+- メモ感想表示
+- 評価(☆)表示
+- microCMS 連携によるデータ取得
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 技術スタック
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js (App Router)
+- TypeScript
+- CSS Modules（コンポーネント単位のスタイル）
+- microCMS（ヘッドレス CMS）
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## フォルダ構成（要点）
 
-## Learn More
+app/
+  favorites/                 # お気に入りページ群
+    components/              # favorites 固有コンポーネント
+    page.tsx                 # サーバー側一覧ページ（データ取得）
+    [id]/page.tsx            # 詳細ページ（サーバー）
+  components/                # 共通コンポーネント（StarRating など）
+  globals.css                # グローバルスタイル
+lib/
+  microcms-client.server.ts  # microCMS クライアント
+  types.ts                   # 型定義
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## デプロイ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Vercel を推奨。環境変数はデプロイ先に設定してください。

@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import Carousel from "@/app/components/carousel/Carousel";
+import Carousel from "@/app/components/carousel";
 import styles from "@/app/page.module.css";
 export default function ClientHome({
   topCarouselPhotos, // トップカルーセル用の写真配列（配列が空の場合は非表示）
@@ -12,7 +12,6 @@ export default function ClientHome({
   // トップページ（クライアント側） — 受け取った写真をカルーセルで表示
   return (
     <main className="min-h-screen bg-white flex flex-col">
-
       {/* ヘッダー（簡易） */}
       <header>お気に入りスポット紹介</header>
 
@@ -24,9 +23,7 @@ export default function ClientHome({
             <h2 className={styles.titleLeft}>記録が体験を変える</h2>
             <h2 className={styles.titleLeft}>お気に入りスポットの訪問記録</h2>
 
-            <p className={styles.textLeft}>
-              あなたの「好き」を育てる成長ログ
-            </p>
+            <p className={styles.textLeft}>あなたの「好き」を育てる成長ログ</p>
             <p className={styles.textLeft}>
               お気に入りの場所の記録と評価で、次の訪問を120%楽しむために
             </p>

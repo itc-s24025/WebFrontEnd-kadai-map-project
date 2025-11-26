@@ -4,17 +4,22 @@
 
 import Link from "next/link";
 import type { FavoriteSpot } from "@/lib/types";
-import styles from "@/app/favorites/Favorites.module.css";
-import StarRating from "@/app/components/starRating/StarRating";
-import pageStyles from "@/app/page.module.css";
+import styles from "@/app/favorites/components/Favorites.module.css";
+import StarRating from "@/app/components/starRating";
 
-export default function FavoritesPageClient({ data }: { data: FavoriteSpot[] }) {
+export default function FavoritesPageClient({
+  data,
+}: {
+  data: FavoriteSpot[];
+}) {
   return (
     <div className={styles.container}>
-
       {/* ページタイトル */}
       <header>お気に入り一覧</header>
-      <p><Link href="/">トップページ</Link> &gt; <Link href="/favorites">お気に入り一覧</Link></p>
+      <p>
+        <Link href="/">トップページ</Link> &gt;{" "}
+        <Link href="/favorites">お気に入り一覧</Link>
+      </p>
 
       {/* 空状態のメッセージ（アイテムがない場合） */}
       {data.length === 0 && (
@@ -43,7 +48,9 @@ export default function FavoritesPageClient({ data }: { data: FavoriteSpot[] }) 
             {spot.tags && spot.tags.length > 0 && (
               <div className="mt-3 flex-wrap gap-2">
                 {spot.tags.map((tag) => (
-                  <span key={tag} className={styles.tag}># {tag}</span>
+                  <span key={tag} className={styles.tag}>
+                    # {tag}
+                  </span>
                 ))}
               </div>
             )}
@@ -52,7 +59,12 @@ export default function FavoritesPageClient({ data }: { data: FavoriteSpot[] }) 
             {spot.visit_photos?.length ? (
               <div className={`${styles.photoContainer} mt-4`}>
                 {spot.visit_photos.map((photo, idx) => (
-                  <img key={idx} src={photo.url} alt={`${spot.spot_name} ${idx+1}`} className={styles.photo} />
+                  <img
+                    key={idx}
+                    src={photo.url}
+                    alt={`${spot.spot_name} ${idx + 1}`}
+                    className={styles.photo}
+                  />
                 ))}
               </div>
             ) : null}
@@ -60,7 +72,9 @@ export default function FavoritesPageClient({ data }: { data: FavoriteSpot[] }) 
         ))}
       </ul>
       {/* トップへ戻るリンク */}
-      <Link href="/" className={styles.backLink}>戻る</Link>
+      <Link href="/" className={styles.backLink}>
+        戻る
+      </Link>
     </div>
   );
 }

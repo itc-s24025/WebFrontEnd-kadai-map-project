@@ -47,7 +47,7 @@ export default function Carousel({
 
   // 自動再生: autoPlay が有効で total > 0 のとき interval ごとに次の画像へ移動
   useEffect(() => {
-        console.log("Carousel:", { autoPlay, interval, total });
+    console.log("Carousel:", { autoPlay, interval, total });
     if (!autoPlay || total === 0) return; // autoPlay 無効または画像なしの場合は何もしない
     const id = setInterval(() => {
       setIndex((i) => (total === 0 ? 0 : (i + 1) % total)); // 次の画像に切り替え

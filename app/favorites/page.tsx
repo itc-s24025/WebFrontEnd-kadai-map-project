@@ -1,6 +1,6 @@
 import { client } from "@/lib/microcms-client.server";
 import type { FavoriteSpot } from "@/lib/types";
-import FavoritesPageClient from "./FavoritesPageClient";
+import FavoritesPageClient from "./components/FavoritesListClient";
 
 export default async function FavoritesPage() {
   const data = await client.getList<FavoriteSpot>({
