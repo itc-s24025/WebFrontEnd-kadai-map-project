@@ -1,6 +1,6 @@
 # WebFrontEnd-kadai-map-project
 
-Next.js (App Router) + TypeScript で作った「お気に入りスポット」アプリケーション。
+Next.js (App Router) + TypeScript で作った「お気に入りスポット」アプリ。
 microCMS でスポットを管理し、カルーセル・星評価・メモ感想などの UI を提供します。
 
 ## 主な機能
@@ -30,8 +30,3 @@ app/
 lib/
   microcms-client.server.ts  # microCMS クライアント
   types.ts                   # 型定義
-
-
-## デプロイ
-
-Vercel を推奨。環境変数はデプロイ先に設定してください。

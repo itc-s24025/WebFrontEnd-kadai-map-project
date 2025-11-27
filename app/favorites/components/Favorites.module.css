@@ -14,61 +14,18 @@
   width: fit-content;
 }
 
-/* メモ上部の評価・タグを右寄せするコンテナ */
-.memoMeta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 80%;            /* メモと同じ幅に */
-  margin: 0.75rem auto 0; /* 中央に揃える（.memoSection と揃う） */
-  justify-content: flex-start; /* 内部は左寄せ */
-  box-sizing: border-box;
-  padding: 0 0.5rem;
-}
-
-.memoContent img {
-  max-height: 480px;
-  width: auto;
-}
-
-/* メモ・感想セクション */
-.memoSection {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  width: 80%;
-  margin: 0 auto;
-  background: linear-gradient(180deg, #fffafc, #fff5f8);
-  border: 1px solid #fde8f5;
-  border-radius: 12px;
-}
-
-.sectionTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-.memoContent {
-  line-height: 2;
-}
-.memoContent p,
-.memoContent > * + * {
-  margin-top: 0.6rem;     /* 各行（段落）上の余白 */
-  margin-bottom: 0.6rem;  /* 各行（段落）下の余白 */
-}
-
 /* 戻るリンク */
 .backLink {
-  position: fixed;               /* 固定配置 */
-  bottom: 20px;                  /* 下からの余白（必要に応じて調整） */
+  position: fixed; /* 固定配置 */
+  bottom: 20px; /* 下からの余白（必要に応じて調整） */
   display: inline-block;
   padding: 0.6rem 1rem;
   background: #ffffff;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  z-index: 120;                  /* 上に出す */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 120; /* 上に出す */
   box-sizing: border-box;
 }
 
@@ -89,17 +46,7 @@
   box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
 }
 
-/* 写真コンテナ */
-.photoContainer {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: auto;       /* コンテンツが長いときは横スクロール */
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 6px;
-}
+
 
 /* スポット名 */
 .spotName {
@@ -113,32 +60,45 @@
   color: #4682b4;
 }
 
-/* タグ */
-.tag {
-  margin: 0.5rem 0.3rem 0.5rem 0;
-  display: inline-block;
-  background: #fff0f6;
-  color: #c0266a;
-  padding: 0.25rem 0.6rem;
-  border-radius: 9999px;
-  font-size: 0.9rem;
-  border: 1px solid #ffd6e8;
-}
-
-
-/* 写真 */
-.photo {
-  height: 96px;
-  width: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-right: 0.5rem;
-}
-
 /* スポットがない場合のメッセージ */
 .emptyMessage {
   color: #6b7280;
   margin: 0 auto;
   font-size: 0.95rem;
   background: #ffffff;
+}
+
+/* 各リストアイテム内のサムネイル指定を優先 */
+.listItem .photo,
+.listItem .photoContainer img {
+  width: 160px;
+  height: 96px;
+  object-fit: cover !important;
+  flex: 0 0 auto;
+}
+
+/* 本文中の画像はリスト幅に収める */
+.listItem .memoContent img,
+.listItem img:not(.photo) {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 900px) {
+  .photo,
+  .photoContainer img,
+  .listItem .photo {
+    width: 140px;
+    height: 88px;
+  }
+}
+@media (max-width: 600px) {
+  .photo,
+  .photoContainer img,
+  .listItem .photo {
+    width: 120px;
+    height: 80px;
+  }
 }

@@ -5,7 +5,7 @@
 import Link from "next/link";
 import type { FavoriteSpot } from "@/lib/types";
 import styles from "@/app/favorites/components/Favorites.module.css";
-import StarRating from "@/app/components/starRating";
+import StarRating from "@/app/favorites/components/starRating";
 
 export default function FavoritesPageClient({
   data,
@@ -55,7 +55,7 @@ export default function FavoritesPageClient({
               </div>
             )}
 
-            {/* 訪問写真（存在する場合にサムネイルを並べる） */}
+            {/* 訪問写真（サムネイルを並べる） */}
             {spot.visit_photos?.length ? (
               <div className={`${styles.photoContainer} mt-4`}>
                 {spot.visit_photos.map((photo, idx) => (

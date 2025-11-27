@@ -2,8 +2,8 @@ import { client } from "@/lib/microcms-client.server";
 import styles from "@/app/favorites/components/Favorites.module.css";
 import Link from "next/link";
 import Carousel from "@/app/components/carousel";
-import StarRating from "@/app/components/starRating";
-import ImageModal from "@/app/components/fullImg";
+import style from "./Detail.module.css"
+import MemoView from "@/app/favorites/components/memo/MemoView";
 
 // このファイル: お気に入り詳細ページ。microCMS から指定IDのスポット情報を取得して表示します。
 export default async function FavoriteDetailPage({
@@ -40,39 +40,14 @@ export default async function FavoriteDetailPage({
       {/* microCMS の画像を渡すカルーセル（クライアントコンポーネント） */}
       {photos.length > 0 && <Carousel photos={photos} />}
 
-      {/* 追加: サムネイル／全画面表示ボタン */}
-      {photos.length > 0 && <ImageModal photos={photos} />}
+      {/* ここで既存の memoMeta と memoSection を削除して MemoView に置き換え */}
+      <MemoView
+        memoHtml={data.memo}
+        rating={data.rating}
+        tags={data.tags}
+        photos={photos}
+      />
 
-      {/* 星評価: data は単一オブジェクトなので map は不要。StarRating を使って表示 */}
-      <div className={styles.memoMeta}>
-        {data.rating != null && (
-          <div style={{ marginTop: 8 }}>
-            <StarRating rating={data.rating} />
-          </div>
-        )}
-
-        {/* タグ表示 */}
-        {data.tags && data.tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {data.tags.map((tag: string) => (
-              <span key={tag} className={styles.tag}>
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* メモ・感想 */}
-      {data.memo && (
-        <div className={styles.memoSection}>
-          {data.memo && <h2 className={styles.sectionTitle}>メモ・感想</h2>}
-          <div
-            className={styles.memoContent}
-            dangerouslySetInnerHTML={{ __html: data.memo }}
-          />
-        </div>
-      )}
       {/* 一覧へ戻るリンク */}
       <Link href="/favorites" className={styles.backLink}>
         戻る

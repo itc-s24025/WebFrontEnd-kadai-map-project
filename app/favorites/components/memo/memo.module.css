@@ -1,0 +1,100 @@
+.container {
+  min-height: 100vh; /* ビューポート全体を覆う */
+  box-sizing: border-box;
+}
+
+
+/* メモ本文内の画像（埋め込み画像）は親幅に収める */
+.memoContent img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  max-height: 480px;
+}
+
+/* サムネイル用の photo クラスは固定サイズに（一覧向け） */
+.photo {
+  flex: 0 0 auto;
+  width: 160px; /* 一覧での固定幅（調整可） */
+  height: 96px; /* 固定高さ */
+  object-fit: cover; /* 比率を保ちながら切り取り */
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+/* もし img に .photo クラスが付いていない場合でもサムネイル化するフォールバック */
+.photoContainer img {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* メモ・感想セクション */
+.memoSection {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  width: 80%;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fffafc, #fff5f8);
+  border: 1px solid #fde8f5;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.memoMeta {
+  align-items: center;
+  gap: 0.5rem;
+  width: 80%;            /* メモと同じ幅に */
+  margin: 0.75rem auto 0; /* 中央に揃える（.memoSection と揃う） */
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
+
+/* メモ本文内の埋め込み画像は親幅に収める */
+.memoContent img {
+  max-height: 480px;
+  width: auto;
+}
+
+/* サムネイルは一覧用に固定サイズ（JSXでclassName="photo"を付与している想定） */
+.photo {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+/* 写真コンテナ（横並び、折り返さない） */
+.photoContainer {
+  /* display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px; */
+}
+
+/* 段落間スペース */
+.memoContent p,
+.memoContent > * + * {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+/* タグ */
+.tag {
+  margin: 0.5rem 0.3rem 0.5rem 0;
+  display: inline-block;
+  background: #fff0f6;
+  color: #c0266a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  border: 1px solid #ffd6e8;
+}
