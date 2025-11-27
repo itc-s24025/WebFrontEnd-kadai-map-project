@@ -14,6 +14,18 @@
   width: fit-content;
 }
 
+/* タグ */
+.tag {
+  margin: 0.5rem 0.3rem 0.5rem 0;
+  display: inline-block;
+  background: #fff0f6;
+  color: #c0266a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  border: 1px solid #ffd6e8;
+}
+
 /* 戻るリンク */
 .backLink {
   position: fixed; /* 固定配置 */
