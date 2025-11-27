@@ -18,15 +18,25 @@ microCMS でスポットを管理し、カルーセル・星評価・メモ感�
 - CSS Modules（コンポーネント単位のスタイル）
 - microCMS（ヘッドレス CMS）
 
-## フォルダ構成（要点）
+## ページ構成
 
-app/
-  favorites/                 # お気に入りページ群
-    components/              # favorites 固有コンポーネント
-    page.tsx                 # サーバー側一覧ページ（データ取得）
-    [id]/page.tsx            # 詳細ページ（サーバー）
-  components/                # 共通コンポーネント（StarRating など）
-  globals.css                # グローバルスタイル
-lib/
-  microcms-client.server.ts  # microCMS クライアント
-  types.ts                   # 型定義
+- / (ホーム)
+  - ファイル: `app/page.tsx`
+  - 概要: トップページ。サーバー側でデータ取得し、クライアント用コンポーネント（例: `ClientHome`）をレンダリングしてトップカルーセル等を表示。
+
+- /favorites (お気に入り一覧)
+  - ファイル（サーバー）: `app/favorites/page.tsx`  
+    - microCMS から一覧を取得して、クライアントコンポーネントに渡す責務を持つ。
+  - ファイル（クライアント表示）: `app/favorites/FavoritesListClient.tsx`
+    - 実際の一覧レンダリング（カード、サムネイル、タグ、星評価、リンクなど）。
+    - スタイル: `app/favorites/components/Favorites.module.css`
+    - 利用コンポーネント例: `StarRating`（現状 `app/favorites/components/starRating` から import）  
+
+- /favorites/[id] (お気に入り詳細)
+  - ファイル: `app/favorites/[id]/page.tsx`
+  - 概要: 指定IDのスポット詳細を表示。主に以下のコンポーネントを組み合わせている
+    - カルーセル: `app/components/carousel`
+    - サムネイル／モーダル: `app/components/fullImg`（ImageModal）
+    - 星評価: `app/components/starRating`（プロジェクト内の配置に差分があるため要確認）
+    - メモ表示: `.memoSection` / `MemoView` 相当のコンポーネント（場所に依存）
+
