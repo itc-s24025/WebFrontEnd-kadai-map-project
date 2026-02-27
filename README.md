@@ -1,42 +1,102 @@
-# WebFrontEnd-kadai-map-project
+# お気に入りスポット紹介
 
-Next.js (App Router) + TypeScript で作った「お気に入りスポット」アプリ。
-microCMS でスポットを管理し、カルーセル・星評価・メモ感想などの UI を提供します。
+### 作品概要
 
-## 主な機能
+過去に行った場所の管理をmicroCMSを使用して管理できます！
+画像・5段階評価・メモ感想などの機能が使えます！
+
+### 主な機能
 
 - お気に入りスポットの一覧表示 / 詳細表示
 - 画像カルーセル表示
 - メモ感想表示
-- 評価(☆)表示
+- 5段階評価
 - microCMS 連携によるデータ取得
 
-## 技術スタック
+--- 
+
+### 使用技術
 
 - Next.js (App Router)
 - TypeScript
-- CSS Modules（コンポーネント単位のスタイル）
-- microCMS（ヘッドレス CMS）
+- CSS Modules
+- microCMS
 
-## ページ構成
+--- 
+
+### ディレクトリ構成
 
 - / (ホーム)
-  - ファイル: `app/page.tsx`
-  - 概要: トップページ。サーバー側でデータ取得し、クライアント用コンポーネント（例: `ClientHome`）をレンダリングしてトップカルーセル等を表示。
+  - ファイル: `app/page.tsx` - トップページ
 
 - /favorites (お気に入り一覧)
-  - ファイル（サーバー）: `app/favorites/page.tsx`  
-    - microCMS から一覧を取得して、クライアントコンポーネントに渡す責務を持つ。
-  - ファイル（クライアント表示）: `app/favorites/FavoritesListClient.tsx`
-    - 実際の一覧レンダリング（カード、サムネイル、タグ、星評価、リンクなど）。
-    - スタイル: `app/favorites/components/Favorites.module.css`
-    - 利用コンポーネント例: `StarRating`（現状 `app/favorites/components/starRating` から import）  
+  - `app/favorites/page.tsx` - microCMS から一覧を取得
+  - `app/favorites/FavoritesListClient.tsx` - カード、サムネイル、タグ、星評価、リンクなど
+    - `app/favorites/components/Favorites.module.css` - スタイル
 
 - /favorites/[id] (お気に入り詳細)
-  - ファイル: `app/favorites/[id]/page.tsx`
-  - 概要: 指定IDのスポット詳細を表示。主に以下のコンポーネントを組み合わせている
-    - カルーセル: `app/components/carousel`
-    - サムネイル／モーダル: `app/components/fullImg`（ImageModal）
-    - 星評価: `app/components/starRating`（プロジェクト内の配置に差分があるため要確認）
-    - メモ表示: `.memoSection` / `MemoView` 相当のコンポーネント（場所に依存）
+  - `app/favorites/[id]/page.tsx` - 指定IDのお気に入りスポット詳細を表示
+    - `app/components/carousel` - カルーセル
+    - `app/components/fullImg` - サムネイル モーダル
+    - `app/components/starRating` - 星評価
+    - `.memoSection` / `MemoView` - メモ表示
+
+---
+
+### 環境設定
+
+- **Node.js**: 18+（推奨）
+- **TypeScript**: 5.x
+- **Next.js**: 14.1.4（App Router）
+- **React**: 18.x
+
+<br>
+
+**外部ライブラリ**
+  - microcms-js-sdk（v3.2.0）: microCMS API クライアント
+
+### 環境変数
+
+ルートに `.env.local` を作成し、microCMS の情報を設定してください
+
+```
+MICROCMS_SERVICE_DOMAIN=your-service-domain
+MICROCMS_API_KEY=your-api-key
+```
+
+---
+
+### 仕様の説明
+
+**FavoriteSpot**
+- `id`: スポットの一意識別子
+- `spot_name`: スポット名（表示用）
+- `memo`: メモ・感想（HTML形式）
+- `rating`: 5段階評価（1～5）
+- `tags`: タグ配列（例: ["カフェ", "景観"]）
+- `visit_photos`: 訪問写真配列（URL, width, height）
+- `createdAt`, `updatedAt`: タイムスタンプ
+
+
+### 主な UI 機能
+
+**ホーム（/）**
+- トップカルーセル表示、ランディング
+
+<br>
+
+**お気に入り一覧（/favorites）**
+- スポットカード一覧、サムネイル・タグ・星評価・リンク表示
+
+<br>
+
+**詳細ページ（/favorites/[id]）**
+- カルーセル
+- サムネイル、モーダル
+- 星評価、タグ表示
+- メモ・感想
+
+### その他
+- レスポンシブ対応
+
 
